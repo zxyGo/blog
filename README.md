@@ -20,3 +20,9 @@ $ npm run generate
 ```
 
 For detailed explanation on how things work, checkout [Nuxt.js docs](https://nuxtjs.org).
+
+## 项目结构
+
+[vuetify](https://github.com/vuetifyjs/vuetify)
+[koa](https://github.com/koajs/koa)
+[Nuxt.js](https://github.com/nuxt/nuxt.js)
