@@ -24,7 +24,9 @@ For detailed explanation on how things work, checkout [Nuxt.js docs](https://nux
 ## 项目框架
 
 [vuetify](https://github.com/vuetifyjs/vuetify)
+
 [koa](https://github.com/koajs/koa)
+
 [Nuxt.js](https://github.com/nuxt/nuxt.js)
 
 ## 结构分析
