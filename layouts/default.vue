@@ -1,115 +1,74 @@
 <template>
-  <v-app dark>
-    <v-navigation-drawer
-      v-model="drawer"
-      :mini-variant="miniVariant"
-      :clipped="clipped"
-      fixed
-      app
-    >
-      <v-list>
-        <v-list-tile
-          v-for="(item, i) in items"
-          :key="i"
-          :to="item.to"
-          router
-          exact
-        >
-          <v-list-tile-action>
-            <v-icon>{{ item.icon }}</v-icon>
-          </v-list-tile-action>
-          <v-list-tile-content>
-            <v-list-tile-title v-text="item.title" />
-          </v-list-tile-content>
-        </v-list-tile>
-      </v-list>
-    </v-navigation-drawer>
-    <v-toolbar
-      :clipped-left="clipped"
-      fixed
-      app
-    >
-      <v-toolbar-side-icon @click="drawer = !drawer" />
-      <v-btn
-        icon
-        @click.stop="miniVariant = !miniVariant"
-      >
-        <v-icon>{{ `chevron_${miniVariant ? 'right' : 'left'}` }}</v-icon>
-      </v-btn>
-      <v-btn
-        icon
-        @click.stop="clipped = !clipped"
-      >
-        <v-icon>web</v-icon>
-      </v-btn>
-      <v-btn
-        icon
-        @click.stop="fixed = !fixed"
-      >
-        <v-icon>remove</v-icon>
-      </v-btn>
-      <v-toolbar-title v-text="title" />
-      <v-spacer />
-      <v-btn
-        icon
-        @click.stop="rightDrawer = !rightDrawer"
-      >
-        <v-icon>menu</v-icon>
-      </v-btn>
-    </v-toolbar>
-    <v-content>
+  <v-app>
+    <nav-header></nav-header>
+    <v-content class="overall-style">
       <v-container>
-        <nuxt />
+        <nuxt/>
       </v-container>
     </v-content>
-    <v-navigation-drawer
-      v-model="rightDrawer"
-      :right="right"
-      temporary
-      fixed
-    >
-      <v-list>
-        <v-list-tile @click.native="right = !right">
-          <v-list-tile-action>
-            <v-icon light>compare_arrows</v-icon>
-          </v-list-tile-action>
-          <v-list-tile-title>Switch drawer (click me)</v-list-tile-title>
-        </v-list-tile>
-      </v-list>
-    </v-navigation-drawer>
-    <v-footer
-      :fixed="fixed"
-      app
-    >
-      <span>&copy; 2019</span>
-    </v-footer>
+
+    <nuxt-footer></nuxt-footer>
   </v-app>
 </template>
 
 <script>
+import NavHeader from '../components/NavHeader'
+import NuxtFooter from '../components/NuxtFooter'
+
 export default {
   data() {
     return {
-      clipped: false,
-      drawer: false,
-      fixed: false,
-      items: [
-        {
-          icon: 'apps',
-          title: 'Welcome',
-          to: '/'
-        },
-        {
-          icon: 'bubble_chart',
-          title: 'Inspire',
-          to: '/inspire'
-        }
-      ],
-      miniVariant: false,
-      right: true,
-      rightDrawer: false,
-      title: 'Vuetify.js'
-    }
+      // clipped: false,
+      // drawer: false,
+      // fixed: false,
+      // items: [
+      //   {
+      //     icon: "border_color",
+      //     title: "随笔"
+      //   },
+      //   {
+      //     icon: "list_alt",
+      //     title: "CODE"
+      //   },
+      //   {
+      //     icon: "person",
+      //     title: "关于"
+      //   },
+      //   {
+      //     icon: "search",
+      //     title: "搜索"
+      //   }
+      // ],
+      // miniVariant: false,
+      // right: true,
+      // rightDrawer: false,
+      // title: "Vuetify.js"
+    };
+  },
+  components: {
+    NavHeader,
+    NuxtFooter
+  }
+};
+</script>
+<style lang="less" scope>
+.v-btn {
+  padding: 4px 16px !important;
+}
+.v-toolbar__content,
+.v-toolbar__extension {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+@media screen and (min-width: 960px) {
+  .overall-style {
+    background-image: url("https://wx1.sinaimg.cn/woriginal/bccf46b9gy1fmhghc9xopj21400p0gs7.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: left top;
+  }
+  .theme--light.v-toolbar {
+    background-color: rgba(255, 255, 255, 0.6) !important;
   }
 }
-</script>
+</style>

@@ -1,73 +1,66 @@
 <template>
-  <v-layout
-    column
-    justify-center
-    align-center
-  >
-    <v-flex
-      xs12
-      sm8
-      md6
-    >
-      <div class="text-xs-center">
-        <logo />
-        <vuetify-logo />
-      </div>
-      <v-card>
-        <v-card-title class="headline">Welcome to the Vuetify + Nuxt.js template</v-card-title>
-        <v-card-text>
-          <p>Vuetify is a progressive Material Design component framework for Vue.js. It was designed to empower developers to create amazing applications.</p>
-          <p>For more information on Vuetify, check out the <a
-            href="https://vuetifyjs.com"
-            target="_blank"
-          >documentation</a>.</p>
-          <p>If you have questions, please join the official <a
-            href="https://chat.vuetifyjs.com/"
-            target="_blank"
-            title="chat"
-          >discord</a>.</p>
-          <p>Find a bug? Report it on the github <a
-            href="https://github.com/vuetifyjs/vuetify/issues"
-            target="_blank"
-            title="contribute"
-          >issue board</a>.</p>
-          <p>Thank you for developing with Vuetify and I look forward to bringing more exciting features in the future.</p>
-          <div class="text-xs-right">
-            <em><small>&mdash; John Leider</small></em>
-          </div>
-          <hr class="my-3">
-          <a
-            href="https://nuxtjs.org/"
-            target="_blank"
-          >Nuxt Documentation</a>
-          <br>
-          <a
-            href="https://github.com/nuxt/nuxt.js"
-            target="_blank"
-          >Nuxt GitHub</a>
-        </v-card-text>
+  <v-layout column justify-center align-center class="index-container">
+    <v-flex xs12 sm8 md6>
+      <div class="text-xs-center"></div>
+      <v-card v-for="item in blogList" :key="item.id">
+        <v-card-title class="headline">{{item.title}}</v-card-title>
+        <v-card-text>{{item.description}}</v-card-text>
         <v-card-actions>
-          <v-spacer />
-          <v-btn
-            color="primary"
-            flat
-            nuxt
-            to="/inspire"
-          >Continue</v-btn>
+          <v-spacer/>
+          <v-btn color="primary" flat nuxt to="/inspire">阅读原文</v-btn>
         </v-card-actions>
       </v-card>
     </v-flex>
+    <pagination ref="page" @page-change="getList"></pagination>
   </v-layout>
 </template>
 
 <script>
-import Logo from '~/components/Logo.vue'
-import VuetifyLogo from '~/components/VuetifyLogo.vue'
+// 主页
+import Pagination from '../components/Pagination'
 
 export default {
+  data() {
+    return {
+      blogList: []
+    }
+  },
+  mounted() {
+    this.getList();
+  },
+  methods: {
+    getList: function() {
+      console.log("start");
+      this.API.request(
+        "/api/blog/list",
+        {
+          pageNum: this.$refs.page.page,
+          itemNum: 10
+        },
+        {
+          method: "get"
+        }
+      ).then(res => {
+        console.log(res);
+        if (res.list) {
+          this.blogList = res.list;
+        }
+      });
+    }
+  },
   components: {
-    Logo,
-    VuetifyLogo
+    Pagination
   }
-}
+};
 </script>
+<style lang="less" scoped>
+.index-container {
+  background: rgba(255, 255, 255, 0.8);
+  max-width: 1000px !important;
+  margin: 0 auto;
+  border-radius: 8px;
+}
+.v-card {
+  box-shadow: none;
+}
+</style>

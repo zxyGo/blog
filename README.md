@@ -35,10 +35,10 @@ For detailed explanation on how things work, checkout [Nuxt.js docs](https://nux
 |- middleware // 存放应用的中间件
 |- pages // 页面目录 pages 用于组织应用的路由及视图
 |- plugins // 插件目录 plugins 用于组织那些需要在 根vue.js应用 实例化之前需要运行的 Javascript 插件。
-|- server
+|- server // 服务器端渲染配置
 |- static // 静态文件目录 static 用于存放应用的静态文件
 |- store // store 目录用于组织应用的 Vuex 状态树 文件
-|- .gitignore
+|- .gitignore // git 忽略文件
 |- nuxt.config.js // nuxt.config.js 文件用于组织Nuxt.js 应用的个性化配置，以便覆盖默认配置
 |- package.json // package.json 文件用于描述应用的依赖关系和对外暴露的脚本接口
 ```

@@ -2,6 +2,10 @@ import Vue from 'vue'
 import Vuetify from 'vuetify/lib'
 import colors from 'vuetify/es5/util/colors'
 
+import API from '../assets/javascript/apis'
+
+Vue.prototype.API = API;
+
 Vue.use(Vuetify, {
   theme: {
     primary: colors.blue.darken2,
