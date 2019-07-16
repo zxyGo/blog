@@ -44,3 +44,6 @@ For detailed explanation on how things work, checkout [Nuxt.js docs](https://nux
 |- nuxt.config.js // nuxt.config.js 文件用于组织Nuxt.js 应用的个性化配置，以便覆盖默认配置
 |- package.json // package.json 文件用于描述应用的依赖关系和对外暴露的脚本接口
 ```
+
+## 问题合集
+* 更改 vuetify 默认样式，可以在 assets-style-app.styl 中重置

@@ -2,17 +2,23 @@
   <div>
     <v-pagination
       v-model="page"
-      :length="15"
-      :total-visible="7"
+      :length="total"
+      :total-visible="5"
       circle></v-pagination>
   </div>
 </template>
 <script>
 // 分页信息
 export default {
+  props: {
+    total: {
+      type: Number,
+      default: 0
+    }
+  },
   data() {
     return {
-      page: 1
+      page: 1,
     };
   },
   watch: {

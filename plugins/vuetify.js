@@ -1,8 +1,11 @@
 import Vue from 'vue'
 import Vuetify from 'vuetify/lib'
 import colors from 'vuetify/es5/util/colors'
+import 'highlight.js/styles/github.css';
 
 import API from '../assets/javascript/apis'
+import dateUtil from '../utils/date'
+Vue.use(dateUtil);
 
 Vue.prototype.API = API;
 

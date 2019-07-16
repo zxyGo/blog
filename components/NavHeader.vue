@@ -1,12 +1,12 @@
 <template>
   <div>
     <v-toolbar :clipped-left="clipped" fixed app class="customized-width">
-      <v-toolbar-title>BlogTitle</v-toolbar-title>
+      <v-toolbar-title @click="goRouter('/')"><img src="../static/blog-logo.png" alt=""></v-toolbar-title>
       <v-spacer/>
       <v-layout justify-end>
         <v-flex hidden-sm-and-down>
           <v-toolbar-items class="justify-end">
-            <v-btn flat v-for="item in items" :key="item.title">
+            <v-btn flat v-for="item in items" :key="item.title" :to="item.link">
               <v-icon small left>{{item.icon}}</v-icon>
               {{item.title}}
             </v-btn>
@@ -43,23 +43,37 @@ export default {
       items: [
         {
           icon: "border_color",
-          title: "随笔"
+          title: "随笔",
+          link: '/'
+        },
+        {
+          icon: "widgets",
+          title: "分类",
+          link: '/classify'
         },
         {
           icon: "list_alt",
-          title: "CODE"
+          title: "CODE",
+          link: '/'
         },
         {
           icon: "person",
-          title: "关于"
+          title: "关于",
+          link: '/'
         },
         {
           icon: "search",
-          title: "搜索"
+          title: "搜索",
+          link: '/'
         }
       ],
       rightDrawer: false,
       clipped: false,
+    }
+  },
+  methods: {
+    goRouter: function(routeLink) {
+      this.$router.push(routeLink);
     }
   }
 }

@@ -65,7 +65,7 @@ export default {
     background-image: url("https://wx1.sinaimg.cn/woriginal/bccf46b9gy1fmhghc9xopj21400p0gs7.jpg");
     background-repeat: no-repeat;
     background-attachment: fixed;
-    background-position: left top;
+    background-position: top;
   }
   .theme--light.v-toolbar {
     background-color: rgba(255, 255, 255, 0.6) !important;

@@ -1,7 +1,6 @@
 import axios from 'axios'
 import md5 from 'js-md5'
 
-
 // 添加响应拦截器
 axios.interceptors.response.use(
   (response) => {
@@ -40,7 +39,7 @@ axios.interceptors.response.use(
 class API {
   constructor() {
     // 设置请求地址
-    this.BASE_URL = 'https://api.zxylucky.com';
+    this.BASE_URL = 'http://127.0.0.1:7001';
     // 设置头部信息
     this.headers = {
 
@@ -78,7 +77,7 @@ class API {
       baseURL: this.BASE_URL,
       url: url,
       params: params,
-      withCredentials: false, // 跨域请求时是否需要使用凭证
+      withCredentials: true, // 跨域请求时是否需要使用凭证
     })
   }
 
@@ -108,7 +107,7 @@ class API {
     if (options && options.method === 'get') {
       return new Promise((resolve, reject) => {
         this.get(url, params, options).then(res => {
-          if (res.data && res.data.code === 200) {
+          if (res.data && res.data.code === 0) {
             resolve(res.data)
           } else {
             reject();
@@ -123,7 +122,7 @@ class API {
     } else if (options && options.method === 'post') {
       return new Promise((resolve, reject) => {
         this.post(url, params, options).then(res => {
-          if (res.data && res.data.code === 200) {
+          if (res.data && res.data.code === 0) {
             resolve(res.data)
           } else {
             reject();
