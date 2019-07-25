@@ -62,7 +62,7 @@ export default {
 }
 @media screen and (min-width: 960px) {
   .overall-style {
-    background-image: url("https://wx1.sinaimg.cn/woriginal/bccf46b9gy1fmhghc9xopj21400p0gs7.jpg");
+    background-image: url("https://document-1-1255829223.cos.ap-shanghai.myqcloud.com/blog/blogBg.jpg");
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-position: top;
