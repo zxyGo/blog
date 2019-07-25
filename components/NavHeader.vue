@@ -24,7 +24,7 @@
     <v-flex hidden-md-and-up>
       <v-navigation-drawer v-model="rightDrawer" right temporary fixed>
         <v-list>
-          <v-list-tile v-for="item in items" :key="item.title">
+          <v-list-tile v-for="item in items" :key="item.title" @click.stop="goPage(item.link)">
             <v-list-tile-action>
               <v-icon light>{{item.icon}}</v-icon>
             </v-list-tile-action>
@@ -44,27 +44,27 @@ export default {
         {
           icon: "border_color",
           title: "随笔",
-          link: '/'
+          link: '/life'
         },
         {
           icon: "widgets",
           title: "分类",
           link: '/classify'
         },
-        {
-          icon: "list_alt",
-          title: "CODE",
-          link: '/'
-        },
+        // {
+        //   icon: "list_alt",
+        //   title: "CODE",
+        //   link: '/'
+        // },
         {
           icon: "person",
           title: "关于",
-          link: '/'
+          link: '/about'
         },
         {
           icon: "search",
           title: "搜索",
-          link: '/'
+          link: '/search'
         }
       ],
       rightDrawer: false,
@@ -72,7 +72,11 @@ export default {
     }
   },
   methods: {
-    goRouter: function(routeLink) {
+    goRouter(routeLink) {
+      this.$router.push(routeLink);
+    },
+    goPage(routeLink) {
+      this.rightDrawer = false;
       this.$router.push(routeLink);
     }
   }

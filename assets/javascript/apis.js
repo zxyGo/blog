@@ -39,7 +39,8 @@ axios.interceptors.response.use(
 class API {
   constructor() {
     // 设置请求地址
-    this.BASE_URL = 'http://127.0.0.1:7001';
+    this.BASE_URL = 'https://api.zxylucky.com';
+    // this.BASE_URL = 'http://127.0.0.1:7001';
     // 设置头部信息
     this.headers = {
 

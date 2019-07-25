@@ -11,7 +11,7 @@
           <span class="post-class">
             <v-icon small>folder_open</v-icon>
             分类于
-            <a href="/">{{item.tags}}</a>
+            <a>{{item.tags}}</a>
           </span>
           <span>
             <v-icon small>visibility</v-icon>
@@ -25,8 +25,10 @@
       </v-card>
 
     </v-flex>
-    <pagination ref="page" @page-change="getList" :total="totalCount"></pagination>
-    <v-btn color="error" hidden-sm-and-down fixed fab dark class="goTop">
+    <div v-show="blogList.length !== 0">
+      <pagination ref="page" @page-change="getList" :total="totalCount"></pagination>
+    </div>
+    <v-btn color="error" hidden-sm-and-down fixed fab dark class="goTop" @click="goTop" v-show="goTopShow">
       <v-icon>keyboard_arrow_up</v-icon>
     </v-btn>
     <!-- <v-btn color="error" fixed fab dark class="goTop">
@@ -41,17 +43,26 @@ import Pagination from '../components/Pagination'
 // import dateUtil from '../utils/date'
 
 export default {
+  props: {
+    tag: String
+  },
   data() {
     return {
       blogList: [],
-      totalCount: 0
+      totalCount: 0,
+      goTopShow: false
     }
   },
   mounted() {
-    this.getList();
+    if (this.tag) {
+      this.getTagList(this.tag)
+    } else {
+      this.getList();
+    }
+    window.addEventListener('scroll', this.handleScroll)
   },
   methods: {
-    getList: function() {
+    getList() {
       this.API.request(
         "/api/blog/list",
         {
@@ -67,6 +78,40 @@ export default {
           this.totalCount = Math.ceil(res.count/10)
         }
       });
+    },
+    getTagList(tag) {
+      this.API.request(
+        "/api/blog/tagOne",
+        {
+          pageSize: this.$refs.page.page,
+          itemSize: 10,
+          tag: tag
+        },
+        {
+          method: "get"
+        }
+      ).then(res => {
+        if (res.code === 0) {
+          this.blogList = res.list;
+          this.totalCount = Math.ceil(res.count/10)
+        }
+      });
+    },
+    goTop() {
+      window.scrollTo({
+        top: 0,
+        left: 0,
+        behavior: 'smooth'
+      });
+    },
+    handleScroll() {
+      var scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
+      if (scrollTop > 500) {
+        this.goTopShow = true;
+      } else {
+        this.goTopShow = false;
+      }
+      console.log(scrollTop)
     }
   },
   components: {
@@ -88,6 +133,9 @@ export default {
 }
 .card {
   background-color: rgba(255, 255, 255, 0)!important;
+  &:not(:last-child) {
+    border-bottom: 1px dotted #aaa; 
+  }
 }
 .card:not(:first-child) {
   margin-top: 40px!important;
