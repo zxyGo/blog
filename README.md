@@ -47,3 +47,16 @@ For detailed explanation on how things work, checkout [Nuxt.js docs](https://nux
 
 ## 问题合集
 * 更改 vuetify 默认样式，可以在 assets-style-app.styl 中重置
+* 部署上线时，在nginx上，如果出现文件404，可以注释掉下面的内容
+  ```
+       #  location ~ .*\.(gif|jpg|jpeg|png|bmp|swf)$
+       #  {
+       #     expires      30d;
+       #}
+
+       #  location ~ .*\.(js|css)?$
+       #  {
+       #     expires      12h;
+       #  }
+  ```
+  因为nuxt已经做了处理
