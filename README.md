@@ -2,7 +2,7 @@
 
 > A blog for me.
 
-[博客地址：https://blog/zxylucky.com](https://blog/zxylucky.com)
+[博客地址：https://blog.zxylucky.com](https://blog.zxylucky.com)
 
 ## Build Setup
 
