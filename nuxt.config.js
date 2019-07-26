@@ -22,7 +22,19 @@ module.exports = {
         href:
           'https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons'
       }
-    ]
+    ],
+    script: [
+      // 百度统计
+      {type: 'text/javascript',innerHTML: `
+      var _hmt = _hmt || [];
+      (function() {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?6d877e9e3eb429d119194667c7c8b129";
+        var s = document.getElementsByTagName("script")[0]; 
+        s.parentNode.insertBefore(hm, s);
+      })();
+      `}
+    ],
   },
 
   /*
